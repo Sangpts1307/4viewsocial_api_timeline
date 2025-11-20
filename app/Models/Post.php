@@ -9,7 +9,7 @@ class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
-        'user_id', 'caption', 'total_like', 'thumbnail_url'
+        'user_id', 'caption', 'total_like', 'thumbnail_url', 'total_comment'
     ];
 
     public $timestamps = true;

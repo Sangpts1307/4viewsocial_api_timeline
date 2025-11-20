@@ -31,16 +31,43 @@ class ResponseApi
         ]);
     }
 
-    public function dataNotfound()
+    public function created($data = null)
+    {
+        return json_encode([
+            'code' => 201,
+            'data' => $data,
+            'message' => 'Resource created successfully.'
+        ]);
+    }
+
+    public function accepted($data = null)
+    {
+        return json_encode([
+            'code' => 202,
+            'data' => $data,
+            'message' => 'Request accepted.'
+        ]);
+    }
+
+    public function noContent()
     {
         return json_encode([
             'code' => 204,
+            'data' => null,
+            'message' => 'No content.'
+        ]);
+    }
+
+    public function dataNotFound()
+    {
+        return json_encode([
+            'code' => 404,
             'data' => null,
             'message' => 'Data not found.'
         ]);
     }
 
-    public function BadResource()
+    public function badResource()
     {
         return json_encode([
             'code' => 301,
@@ -49,7 +76,7 @@ class ResponseApi
         ]);
     }
 
-    public function BadRequest($message = null)
+    public function badRequest($message = 'Bad request.')
     {
         return json_encode([
             'code' => 400,
@@ -58,7 +85,7 @@ class ResponseApi
         ]);
     }
 
-    public function UnAuthorization($message = null)
+    public function unauthorized($message = 'Unauthorized.')
     {
         return json_encode([
             'code' => 401,
@@ -67,21 +94,57 @@ class ResponseApi
         ]);
     }
 
-    public function forbidden()
+    public function forbidden($message = 'Forbidden.')
     {
         return json_encode([
             'code' => 403,
             'data' => null,
-            'message' => 'Forbidden.'
+            'message' => $message
         ]);
     }
 
-    public function InternalServerError()
+    public function conflict($message = 'Conflict.')
+    {
+        return json_encode([
+            'code' => 409,
+            'data' => null,
+            'message' => $message
+        ]);
+    }
+
+    public function unprocessableEntity($message = 'Unprocessable entity.')
+    {
+        return json_encode([
+            'code' => 422,
+            'data' => null,
+            'message' => $message
+        ]);
+    }
+
+    public function internalServerError($message = 'Internal server error.')
     {
         return json_encode([
             'code' => 500,
             'data' => null,
-            'message' => 'Internal server error.'
+            'message' => $message
+        ]);
+    }
+
+    public function notImplemented($message = 'Not implemented.')
+    {
+        return json_encode([
+            'code' => 501,
+            'data' => null,
+            'message' => $message
+        ]);
+    }
+
+    public function serviceUnavailable($message = 'Service unavailable.')
+    {
+        return json_encode([
+            'code' => 503,
+            'data' => null,
+            'message' => $message
         ]);
     }
 }

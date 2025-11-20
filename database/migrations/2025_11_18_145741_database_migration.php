@@ -33,6 +33,7 @@ return new class extends Migration {
             $table->integer('user_id')->index()->nullable();
             $table->string('caption', 255)->nullable();
             $table->integer('total_like')->default(0);
+            $table->integer('total_comment')->default(0);
             $table->string('thumbnail_url', 255)->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
