@@ -12,6 +12,8 @@ Route::post('/save-post', [App\Http\Controllers\PostController::class, 'savePost
 Route::get('/my-post', [App\Http\Controllers\PostController::class, 'myPost']);
 Route::get('/my-saved', [App\Http\Controllers\PostController::class, 'mySaved']);
 Route::get('/explode', [App\Http\Controllers\PostController::class, 'explode']);
+Route::get('/suggest-friend', [App\Http\Controllers\UserController::class, 'suggestFriend']);
+Route::post('follow', [App\Http\Controllers\UserController::class, 'follow']);
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
