@@ -270,4 +270,29 @@ class PostController extends Controller
             return $this->responseApi->internalServerError();
         }
     }
+
+    public function explode(Request $request)
+    {
+        try {
+            $list_post = Post::join('users', 'users.id', '=', 'posts.user_id')
+                ->select(
+                    'posts.id',
+                    'posts.user_id',
+                    'posts.caption',
+                    'posts.thumbnail_url',
+                    'posts.total_like',
+                    'posts.total_comment',
+                    'posts.created_at',
+                    'users.full_name as author_fullname',
+                    'users.avatar_url as author_avatar'
+                )
+                ->orderBy('posts.total_like', 'desc')
+                ->get();
+
+            return $this->responseApi->success($list_post);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return $this->responseApi->internalServerError();
+        }
+    }
 }
