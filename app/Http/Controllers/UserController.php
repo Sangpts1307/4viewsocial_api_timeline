@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -89,6 +90,14 @@ class UserController extends Controller
             Log::error($th);
             return $this->responseApi->internalServerError();
         }
+    }
+
+    public function getInfo(Request $request)
+    {
+        $param = $request->all();
+        $userId = $param['user_id'] ?? Auth::id();
+        
+
     }
 
 }

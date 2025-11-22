@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             [
                 'user_name' => 'admin',
                 'full_name' => 'Administrator',
-                'gmail' => 'admin@gmail.com',
+                'email' => 'admin@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 0,
                 'status' => 0,
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             [
                 'user_name' => 'sanpt',
                 'full_name' => 'SangPT',
-                'gmail' => 'phamthesang1307@gmail.com',
+                'email' => 'phamthesang1307@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 0,
                 'status' => 0,
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             [
                 'user_name' => 'quangjustme',
                 'full_name' => 'QuangJustMe',
-                'gmail' => 'nguyenkimquang1612@gmail.com',
+                'email' => 'nguyenkimquang1612@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 0,
                 'status' => 0,
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             [
                 'user_name' => 'khanhpinapple',
                 'full_name' => 'KhanhPinapple',
-                'gmail' => 'nguyenduykhanh121204@gmail.com',
+                'email' => 'nguyenduykhanh121204@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 0,
                 'status' => 0,
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             [
                 'user_name' => 'hbdiep',
                 'full_name' => 'DiepHB',
-                'gmail' => 'hbdiep2004@gmail.com',
+                'email' => 'hbdiep2004@email.com',
                 'password' => Hash::make('12345678'),
                 'role' => 0,
                 'status' => 0,

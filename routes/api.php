@@ -16,6 +16,11 @@ Route::get('/suggest-friend', [App\Http\Controllers\UserController::class, 'sugg
 Route::post('follow', [App\Http\Controllers\UserController::class, 'follow']);
 Route::post('comment', [App\Http\Controllers\PostController::class, 'comment']);
 Route::get('list-comment', [App\Http\Controllers\PostController::class, 'listComment']);
+Route::post('register', [App\Http\Controllers\Auth\AuthController::class, 'register']);
+Route::get('list-story', [App\Http\Controllers\StoryController::class, 'listStory']);
+Route::post('add-story', [App\Http\Controllers\StoryController::class, 'addStory']);
+Route::post('delete-story', [App\Http\Controllers\StoryController::class, 'deleteStory']);
+Route::get('get-info', [App\Http\Controllers\UserController::class, 'getInfo']);
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');

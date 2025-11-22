@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('user_name', 255)->nullable();
             $table->string('full_name', 255)->nullable();
             $table->string('avatar_url', 255)->nullable();
-            $table->string('gmail', 255)->nullable();
+            $table->string('email', 255)->nullable();
             $table->string('password', 255)->nullable();
             $table->string('facebook_url', 255)->nullable();
             $table->string('thread_url', 255)->nullable();
@@ -116,6 +116,20 @@ return new class extends Migration {
             $table->integer('user_id')->index()->nullable();
             $table->integer('infringe_id')->index()->nullable();
         });
+
+        Schema::create('user_verifications', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id')->index(); // Khóa ngoại tới bảng users
+            $table->string('code'); // Mã xác thực (VD: 6 ký tự)
+            $table->timestamp('expires_at')->nullable(); // Thời gian hết hạn mã
+            $table->timestamps();
+
+            // 🔗 Khóa ngoại
+            // $table->foreign('user_id')
+            //     ->references('id')
+            //     ->on('users')
+            //     ->onDelete('cascade'); // Nếu user bị xóa thì xóa luôn mã
+        });
     }
 
     public function down(): void
@@ -130,5 +144,6 @@ return new class extends Migration {
         Schema::dropIfExists('follows');
         Schema::dropIfExists('posts');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('user_verifications');
     }
 };
