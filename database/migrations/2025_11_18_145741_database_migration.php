@@ -25,6 +25,7 @@ return new class extends Migration {
             $table->tinyInteger('online_status')->default(0); // 0 offline, 1 online
             $table->integer('status')->default(0); // 0 sử dụng, 1 banned
             $table->integer('login_fail')->default(0);
+            $table->string('token', 255)->nullable();
         });
 
         /* POSTS */

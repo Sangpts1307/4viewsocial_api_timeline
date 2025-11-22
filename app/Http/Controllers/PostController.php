@@ -6,6 +6,7 @@ use App\Helpers\ResponseApi;
 use App\Models\Favourite;
 use App\Models\LikePost;
 use App\Models\Post;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -290,6 +291,54 @@ class PostController extends Controller
                 ->get();
 
             return $this->responseApi->success($list_post);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return $this->responseApi->internalServerError();
+        }
+    }
+
+    public function comment(Request $request)
+    {
+        try {
+            // $userId = Auth::id();
+            $userId = 2;
+            $postId = $request->post_id;
+            $comment = $request->comment;
+            $parent_id = $request->parent_id ?? null;
+
+            Comment::create([
+                'user_id' => $userId,
+                'post_id' => $postId,
+                'comment' => $comment,
+                'parent_id' => $parent_id
+            ]);
+            return $this->responseApi->success([
+                'comment' => $comment,
+                'post_id' => $postId,
+                'parent_id' => $parent_id,
+                'message' => 'Comment successfully!'
+            ]);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            return $this->responseApi->internalServerError();
+        }
+    }
+
+    public function listComment(Request $request)
+    {
+        try {
+            $postId = $request->post_id;
+
+            $comments = Comment::with([
+                'user:id,full_name,user_name,avatar_url',
+                'children.user:id,full_name,user_name,avatar_url'
+            ])
+                ->where('post_id', $postId)
+                ->whereNull('parent_id')
+                ->select('id', 'comment', 'parent_id', 'user_id', 'post_id', 'created_at')
+                ->get();
+
+            return $this->responseApi->success(compact('comments'));
         } catch (\Throwable $th) {
             Log::error($th);
             return $this->responseApi->internalServerError();

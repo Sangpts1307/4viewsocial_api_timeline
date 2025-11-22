@@ -11,7 +11,7 @@ class User extends Model
     protected $fillable = [
         'user_name', 'full_name', 'avatar_url', 'gmail', 'password',
         'facebook_url', 'thread_url', 'instagram_url', 'bio',
-        'role', 'online_status', 'status', 'login_fail'
+        'role', 'online_status', 'status', 'login_fail', 'token'
     ];
 
     public $timestamps = true;

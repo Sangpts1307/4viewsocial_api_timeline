@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ResponseApi;
+use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class UserController extends Controller
     {
         try {
             // $userId = Auth::id();
-            $userId = 2;
+            $userId = 3;
             $followingId = $request->following_id;
 
             // if ($userId == $followingId) {
@@ -89,4 +90,5 @@ class UserController extends Controller
             return $this->responseApi->internalServerError();
         }
     }
+
 }
